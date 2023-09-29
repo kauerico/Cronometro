@@ -5,7 +5,7 @@ public class teste{
         Scanner teclado = new Scanner(System.in);
 
         String nome, mesNome;
-        int dia, ano, trimestre = 0, anoRestante;
+        int ano, trimestre = 0, anoRestante;
 
         boolean habilitado, bissexto = false;
         nome = teclado.nextLine();
