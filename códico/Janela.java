@@ -6,9 +6,9 @@ public class Janela{
     JFrame janelaCronometro = new JFrame();
     JLabel contador = new JLabel();
     Cronometro cronometro = new Cronometro();
-    JButton StartButton = new JButton("Start");
-    JButton StopButton = new JButton("Stop");
-    JButton ResetButton = new JButton("Reset");
+    JButton startButton = new JButton("Start");
+    JButton stopButton = new JButton("Stop");
+    JButton resetButton = new JButton("Reset");
 
     String segundosTexto = String.format("%02d", cronometro.segundos);
     String minutosTexto = String.format("%02d", cronometro.minutos);
@@ -23,13 +23,16 @@ public class Janela{
         contador.setOpaque(true);
         contador.setHorizontalAlignment(JTextField.HORIZONTAL);
 
-        StartButton.setBounds(100,230 ,100, 50);
-        StartButton.setFont(new Font("Ink free",Font.PLAIN, 20));
-        StartButton.setFocusable(false);
+        startButton.setBounds(100,230 ,100, 50);
+        startButton.setFont(new Font("Ink free",Font.PLAIN, 20));
+        startButton.setFocusable(false);
 
+        resetButton.setBounds(200,230 ,100, 50);
+        resetButton.setFont(new Font("Ink free",Font.PLAIN, 20));
+        resetButton.setFocusable(false);
 
-
-        janelaCronometro.add(StartButton);
+        janelaCronometro.add(resetButton);
+        janelaCronometro.add(startButton);
         janelaCronometro.add(contador);
         janelaCronometro.setVisible(true);
         janelaCronometro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,5 +47,6 @@ public class Janela{
     
 
     }
+
 
 }
