@@ -45,33 +45,49 @@ public class Cronometro implements ActionListener {
         contador.setOpaque(true);
         contador.setHorizontalAlignment(JTextField.CENTER);
 
-        startButton.setBounds(100, 230, 100, 50);
+        startButton.setBounds(100, 200, 100, 50);
         startButton.setFont(new Font("Ink free", Font.PLAIN, 20));
         startButton.setFocusable(false);
         startButton.addActionListener(this);
 
-        resetButton.setBounds(200, 230, 100, 50);
+        resetButton.setBounds(200, 200, 100, 50);
         resetButton.setFont(new Font("Ink free", Font.PLAIN, 20));
         resetButton.setFocusable(false);
+        resetButton.addActionListener(this);
 
         janelaCronometro.add(resetButton);
         janelaCronometro.add(startButton);
         janelaCronometro.add(contador);
-        janelaCronometro.setVisible(true);
+
         janelaCronometro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janelaCronometro.setSize(420, 420);
+        janelaCronometro.setSize(420,420);
         janelaCronometro.setResizable(false);
-        janelaCronometro.setLocationRelativeTo(null);
-        janelaCronometro.getContentPane().setBackground(new Color(0, 0, 0));
-        janelaCronometro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        janelaCronometro.setLayout(null);
         janelaCronometro.setTitle("Cronômetro");
         janelaCronometro.setIconImage(logo.getImage());
-
+        janelaCronometro.setVisible(true);
+      
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startButton) {
-            Start();
+            
+            if (cronometroIniciado == false){
+                cronometroIniciado = true;
+                startButton.setText("Stop");
+                Start();
+            }
+            else{
+                cronometroIniciado = false;
+                startButton.setText("Start");
+                Stop();
+
+            }
+        }
+        if (e.getSource() == resetButton){
+            cronometroIniciado = false;
+            startButton.setText("Start");
+            Reset();
         }
 
     }
@@ -81,10 +97,19 @@ public class Cronometro implements ActionListener {
     }
 
     void Stop() {
+        timer.stop();
 
     }
 
     void Reset() {
-
+        timer.stop();
+        int milissegundos = 0;
+        int segundos = 0;
+        int minutos = 0;
+        int horas = 0;
+        segundosTexto = String.format("%02d", segundos);
+        minutosTexto = String.format("%02d", minutos);
+        horasTexto = String.format("%02d", horas);
+        contador.setText(horasTexto + ":" + minutosTexto + ":" + segundosTexto);
     }
 }
